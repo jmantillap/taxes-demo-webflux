@@ -50,3 +50,15 @@ r2dbc:
         max-size: 20      # Número máximo de conexiones en el pool
         max-idle-time: 30m # Tiempo máximo de inactividad de una conexión
         validation-query: "SELECT 1" # Consulta para validar conexiones
+
+rest-consumer:
+  timeout:
+    default-connection: ${REST_TIMEOUT_CONNECTION:3000}
+    default-read: ${REST_TIMEOUT_READ:3000}
+    default-write: ${REST_TIMEOUT_WRITE:3000}
+  api-calendar:
+    baseUrl: https://api.generadordni.es
+    holiday: /v2/holidays/holidays #/v2/holidays/holidays?country=ES&year=2025
+    connectTimeout: ${API_CALENDAR_CONNECT_TIMEOUT:3000}
+    responseTimeout: ${API_CALENDAR_RESPONSE_TIMEOUT:3000}
+    apiKey: ${API_CALENDAR_KEY:xxxxx}

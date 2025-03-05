@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-import work.javiermantilla.tax.domain.usecase.holiday.IHoliday;
+import work.javiermantilla.tax.domain.usecase.holiday.IHolidayUseCase;
 import work.javiermantilla.tax.infrastructure.in.web.commons.JsonApiDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.mapper.HolidayMapper;
 
@@ -17,7 +17,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class HolidayHandler {
 
-    private final IHoliday holidayUseCase;
+    private final IHolidayUseCase holidayUseCase;
 
     private static final Logger log = LogManager.getLogger(HolidayHandler.class);
 

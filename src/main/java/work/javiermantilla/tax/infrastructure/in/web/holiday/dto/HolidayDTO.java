@@ -6,5 +6,5 @@ import java.time.LocalDate;
 public record HolidayDTO(Integer id,
                          String year,
                          LocalDate date,
-                         Short state) {
+                         String state) {
 }

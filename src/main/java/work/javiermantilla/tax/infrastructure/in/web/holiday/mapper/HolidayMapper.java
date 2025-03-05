@@ -17,7 +17,7 @@ public class HolidayMapper {
                         holiday.getId(),
                         holiday.getYear(),
                         holiday.getDate(),
-                        holiday.getEnabled()
+                        holiday.getEnabled().intValue()==1 ? "A":"I"
                     )
                 )
                 .toList();
