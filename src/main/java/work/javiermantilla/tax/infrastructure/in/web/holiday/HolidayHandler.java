@@ -6,11 +6,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 import work.javiermantilla.tax.domain.usecase.holiday.IHoliday;
 import work.javiermantilla.tax.infrastructure.in.web.commons.JsonApiDTO;
+import work.javiermantilla.tax.infrastructure.in.web.holiday.mapper.HolidayMapper;
 
 import java.util.function.Function;
 
@@ -29,6 +28,7 @@ public class HolidayHandler {
                 .map(rq-> holidayUseCase.getHolidays())
                 .flatMapMany(Function.identity())
                 .collectList()
+                .map(HolidayMapper::buildResponse)
                 .map(JsonApiDTO::new)
                 .flatMap(ServerResponse.ok()::bodyValue)
                 .onErrorResume(Mono::error);
