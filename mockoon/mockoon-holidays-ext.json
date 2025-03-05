@@ -1,0 +1,94 @@
+{
+  "uuid": "64a85beb-ac1f-4d33-86e9-dae80c31f393",
+  "lastMigration": 33,
+  "name": "Mockoon holidays ext",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3004,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "9d2167b9-7eb0-4f7e-8cfe-f1161817ea12",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v2/holidays/holidays",
+      "responses": [
+        {
+          "uuid": "650f1f64-f7a6-40e4-a4f4-ba25c6805611",
+          "body": "[\r\n    {\r\n        \"date\": \"2025-01-01 00:00:00\",\r\n        \"start\": \"2024-12-31T23:00:00.000Z\",\r\n        \"end\": \"2025-01-01T23:00:00.000Z\",\r\n        \"name\": \"Año Nuevo\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"01-01\"\r\n    },\r\n    {\r\n        \"date\": \"2025-01-06 00:00:00\",\r\n        \"start\": \"2025-01-05T23:00:00.000Z\",\r\n        \"end\": \"2025-01-06T23:00:00.000Z\",\r\n        \"name\": \"Día de los Reyes Magos\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"01-06\"\r\n    },\r\n    {\r\n        \"date\": \"2025-03-19 00:00:00\",\r\n        \"start\": \"2025-03-18T23:00:00.000Z\",\r\n        \"end\": \"2025-03-19T23:00:00.000Z\",\r\n        \"name\": \"San José\",\r\n        \"type\": \"observance\",\r\n        \"rule\": \"03-19\"\r\n    },\r\n    {\r\n        \"date\": \"2025-04-17 00:00:00\",\r\n        \"start\": \"2025-04-16T22:00:00.000Z\",\r\n        \"end\": \"2025-04-17T22:00:00.000Z\",\r\n        \"name\": \"Jueves Santo\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"easter -3\"\r\n    },\r\n    {\r\n        \"date\": \"2025-04-18 00:00:00\",\r\n        \"start\": \"2025-04-17T22:00:00.000Z\",\r\n        \"end\": \"2025-04-18T22:00:00.000Z\",\r\n        \"name\": \"Viernes Santo\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"easter -2\"\r\n    },\r\n    {\r\n        \"date\": \"2025-04-20 00:00:00\",\r\n        \"start\": \"2025-04-19T22:00:00.000Z\",\r\n        \"end\": \"2025-04-20T22:00:00.000Z\",\r\n        \"name\": \"Pascua\",\r\n        \"type\": \"observance\",\r\n        \"rule\": \"easter\"\r\n    },\r\n    {\r\n        \"date\": \"2025-05-01 00:00:00\",\r\n        \"start\": \"2025-04-30T22:00:00.000Z\",\r\n        \"end\": \"2025-05-01T22:00:00.000Z\",\r\n        \"name\": \"Día del trabajador\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"05-01\"\r\n    },\r\n    {\r\n        \"date\": \"2025-05-04 00:00:00\",\r\n        \"start\": \"2025-05-03T22:00:00.000Z\",\r\n        \"end\": \"2025-05-04T22:00:00.000Z\",\r\n        \"name\": \"Día de la Madre\",\r\n        \"type\": \"observance\",\r\n        \"rule\": \"1st sunday in May\"\r\n    },\r\n    {\r\n        \"date\": \"2025-06-08 00:00:00\",\r\n        \"start\": \"2025-06-07T22:00:00.000Z\",\r\n        \"end\": \"2025-06-08T22:00:00.000Z\",\r\n        \"name\": \"Pentecostés\",\r\n        \"type\": \"observance\",\r\n        \"rule\": \"easter 49\"\r\n    },\r\n    {\r\n        \"date\": \"2025-07-25 00:00:00\",\r\n        \"start\": \"2025-07-24T22:00:00.000Z\",\r\n        \"end\": \"2025-07-25T22:00:00.000Z\",\r\n        \"name\": \"Santiago Apostol\",\r\n        \"type\": \"observance\",\r\n        \"note\": \"regional\",\r\n        \"rule\": \"07-25\"\r\n    },\r\n    {\r\n        \"date\": \"2025-08-15 00:00:00\",\r\n        \"start\": \"2025-08-14T22:00:00.000Z\",\r\n        \"end\": \"2025-08-15T22:00:00.000Z\",\r\n        \"name\": \"Asunción\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"08-15\"\r\n    },\r\n    {\r\n        \"date\": \"2025-10-12 00:00:00\",\r\n        \"start\": \"2025-10-11T22:00:00.000Z\",\r\n        \"end\": \"2025-10-12T22:00:00.000Z\",\r\n        \"name\": \"Fiesta Nacional de España\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"10-12\"\r\n    },\r\n    {\r\n        \"date\": \"2025-10-13 00:00:00\",\r\n        \"start\": \"2025-10-12T22:00:00.000Z\",\r\n        \"end\": \"2025-10-13T22:00:00.000Z\",\r\n        \"type\": \"observance\",\r\n        \"name\": \"Fiesta Nacional de España (día sustituto)\",\r\n        \"substitute\": true,\r\n        \"rule\": \"substitutes 10-12 if sunday then next monday\"\r\n    },\r\n    {\r\n        \"date\": \"2025-11-01 00:00:00\",\r\n        \"start\": \"2025-10-31T23:00:00.000Z\",\r\n        \"end\": \"2025-11-01T23:00:00.000Z\",\r\n        \"name\": \"Todos los Santos\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"11-01\"\r\n    },\r\n    {\r\n        \"date\": \"2025-12-06 00:00:00\",\r\n        \"start\": \"2025-12-05T23:00:00.000Z\",\r\n        \"end\": \"2025-12-06T23:00:00.000Z\",\r\n        \"name\": \"Día de la Constitución Española\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"12-06\"\r\n    },\r\n    {\r\n        \"date\": \"2025-12-08 00:00:00\",\r\n        \"start\": \"2025-12-07T23:00:00.000Z\",\r\n        \"end\": \"2025-12-08T23:00:00.000Z\",\r\n        \"name\": \"La inmaculada concepción\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"12-08\"\r\n    },\r\n    {\r\n        \"date\": \"2025-12-25 00:00:00\",\r\n        \"start\": \"2025-12-24T23:00:00.000Z\",\r\n        \"end\": \"2025-12-25T23:00:00.000Z\",\r\n        \"name\": \"Navidad\",\r\n        \"type\": \"public\",\r\n        \"rule\": \"12-25\"\r\n    }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "9d2167b9-7eb0-4f7e-8cfe-f1161817ea12"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

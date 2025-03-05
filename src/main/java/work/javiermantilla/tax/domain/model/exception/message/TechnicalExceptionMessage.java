@@ -19,6 +19,7 @@ public enum TechnicalExceptionMessage {
     ERROR_RESPONSE_COULD_NOT_BE_PARSED("TEC0007", "Error response could not be parsed",
             "An error occurred while attempting to parse the error response"),
     EMPTY_ERROR_RESPONSE("TEC0008", "Empty error response", "The error response is empty"),
+    TECHNICAL_JSON_EXCEPTION("TEC0009", "Technical json exception", "Error while parsing the json"),
     ;
     private final String code;
     private final String description;

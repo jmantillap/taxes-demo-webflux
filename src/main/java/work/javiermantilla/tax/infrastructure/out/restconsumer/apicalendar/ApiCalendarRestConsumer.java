@@ -4,20 +4,30 @@ import io.netty.channel.ChannelOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
+import work.javiermantilla.tax.domain.model.holiday.HolidayExternModel;
+import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayExternRestPort;
+import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.exception.MicroserviceErrorHandler;
 import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.filters.CustomFiltersRest;
+import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.filters.RestClientFilterFunctionLog;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 
 
 @Service
-public class ApiCalendarRestConsumer /*implements DistributionRouterRepository*/ {
+public class ApiCalendarRestConsumer implements IHolidayExternRestPort {
 
     private final WebClient webClient;
     private final ApiCalendarRestProperties properties;
@@ -31,8 +41,8 @@ public class ApiCalendarRestConsumer /*implements DistributionRouterRepository*/
                 .baseUrl(properties.getBaseUrl())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .filter(CustomFiltersRest.loggingFilter())
-                //.filter(new LoggerRestClientFilterFunction(ApiCalendarRestConsumer.class.getName()))
+                //.filter(CustomFiltersRest.loggingFilter())
+                .filter(new RestClientFilterFunctionLog(ApiCalendarRestConsumer.class.getName()))
                 .clientConnector(new ReactorClientHttpConnector(setUpHttpClient()))
                 .build();
 
@@ -50,6 +60,21 @@ public class ApiCalendarRestConsumer /*implements DistributionRouterRepository*/
         return HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, properties.getConnectTimeout())
                 .responseTimeout(Duration.ofMillis(properties.getResponseTimeout()));
+    }
+
+    @Override
+    public Mono<List<HolidayExternModel>> getHolidays(String year) {
+
+        return  webClient.get()
+                .uri(properties.getHoliday()+"?country=CO&year="+year)
+                .headers(ApiCalendarRequestBuilder::addCustomHeaders)
+                .retrieve()
+                .onStatus(HttpStatusCode::isError, ClientResponse::createException)
+                .toEntity(new ParameterizedTypeReference<List<HolidayExternModel>>() {})
+                .filter(HttpEntity::hasBody)
+                .map(HttpEntity::getBody)
+                .onErrorMap(error -> MicroserviceErrorHandler.handleError(error, generateErrorMap))
+                ;
     }
 
 //    @Override

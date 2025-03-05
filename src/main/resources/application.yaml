@@ -57,7 +57,8 @@ rest-consumer:
     default-read: ${REST_TIMEOUT_READ:3000}
     default-write: ${REST_TIMEOUT_WRITE:3000}
   api-calendar:
-    baseUrl: https://api.generadordni.es
+    #baseUrl: https://api.generadordni.es
+    baseUrl: http://localhost:3004
     holiday: /v2/holidays/holidays #/v2/holidays/holidays?country=ES&year=2025
     connectTimeout: ${API_CALENDAR_CONNECT_TIMEOUT:3000}
     responseTimeout: ${API_CALENDAR_RESPONSE_TIMEOUT:3000}

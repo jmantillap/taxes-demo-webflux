@@ -12,6 +12,7 @@ public class CustomFiltersRest {
     public static ExchangeFilterFunction loggingFilter() {
         return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
             LOGGER.info("➡️ Request: " + clientRequest.method() + " " + clientRequest.url());
+            LOGGER.info("➡️ Request Headers: " + clientRequest.headers() );
             return Mono.just(clientRequest);
         }).andThen(ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
             LOGGER.info("⬅️ Response: " + clientResponse.statusCode());
