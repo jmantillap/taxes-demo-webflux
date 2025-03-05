@@ -1,0 +1,52 @@
+server:
+  port: ${APP_PORT:8080}
+  servlet:
+    encoding:
+      charset: "UTF-8"
+      force: true
+spring:
+  webflux:
+    base-path: /api/v1/tax
+  application:
+    name: taxes-demo
+  devtools:
+    add-properties: false
+  profiles:
+    active: ${ENV:local}
+  #r2dbc:
+  #  url: ""  # Desactiva la configuración automática
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        health: "health"
+        liveness: "liveness"
+        readiness: "readiness"
+      exposure:
+        include: "health, liveness, readiness, metrics"
+        #include: "*"
+  endpoint:
+    health:
+      show-details: "never"
+      cache:
+        time-to-live: "10s"
+      probes:
+        enabled: true
+logging:
+  level:
+    root: ${ROOT_LEVEL_LOG:info}
+    web: ${LOG4J_LEVEL:info}
+r2dbc:
+  mysql:
+      url: ${MYSQL_URL:r2dbc:mysql://localhost:3306/taxes_Demo}
+      username: ${MYSQL_USER:root}
+      password: ${MYSQL_PASSWORD:123456}
+      port: ${MYSQL_PORT:3306}
+      host: ${MYSQL_HOST:localhost}
+      database: ${MYSQL_DATABASE:taxes_Demo}
+      pool:
+        initial-size: 5  # Número inicial de conexiones en el pool
+        max-size: 20      # Número máximo de conexiones en el pool
+        max-idle-time: 30m # Tiempo máximo de inactividad de una conexión
+        validation-query: "SELECT 1" # Consulta para validar conexiones
