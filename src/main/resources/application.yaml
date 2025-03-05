@@ -39,9 +39,9 @@ logging:
     web: ${LOG4J_LEVEL:info}
 r2dbc:
   mysql:
-      url: ${MYSQL_URL:r2dbc:mysql://localhost:3306/taxes_Demo}
-      username: ${MYSQL_USER:root}
-      password: ${MYSQL_PASSWORD:123456}
+      #url: ${MYSQL_URL:r2dbc:mysql://localhost:3306/taxes_Demo}
+      username: ${MYSQL_USER:user}
+      password: ${MYSQL_PASSWORD:demo}
       port: ${MYSQL_PORT:3306}
       host: ${MYSQL_HOST:localhost}
       database: ${MYSQL_DATABASE:taxes_Demo}
