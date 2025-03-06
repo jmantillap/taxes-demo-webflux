@@ -7,15 +7,21 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+import work.javiermantilla.tax.domain.model.exception.BadRequestException;
+import work.javiermantilla.tax.domain.model.exception.DataNotFoundException;
+import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 import work.javiermantilla.tax.domain.usecase.holiday.IHolidayExternUseCase;
 import work.javiermantilla.tax.domain.usecase.holiday.IHolidayUseCase;
 import work.javiermantilla.tax.infrastructure.in.web.commons.JsonApiDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayRequestDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayResponseDTO;
+import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayUpdateRequestDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.mapper.HolidayMapper;
 import work.javiermantilla.tax.infrastructure.in.web.util.RequestValidator;
 
 import java.util.function.Function;
+
+import static work.javiermantilla.tax.domain.model.exception.message.BusinessExceptionMessage.REQUEST_BODY;
 
 @Component
 @RequiredArgsConstructor
@@ -60,5 +66,28 @@ public class HolidayHandler {
                 .map(JsonApiDTO::new)
                 .flatMap(ServerResponse.ok()::bodyValue)
                 .onErrorResume(Mono::error);
+    }
+
+    public Mono<ServerResponse> updateHoliday(ServerRequest serverRequest) {
+        return Mono.just(serverRequest)
+                .map(rq-> serverRequest.pathVariable("id"))
+                .map(Integer::parseInt)
+                .flatMap(id->
+                        requestValidator.validateRequestBody(serverRequest, HolidayUpdateRequestDTO.class)
+                        .flatMap(holidayRequest->
+                                requestValidator.validateBody(holidayRequest)
+                                        .thenReturn(holidayRequest))
+                                .filter(rq->id.intValue()==rq.getId())
+                                .switchIfEmpty(Mono.defer(() ->Mono.error(new BadRequestException(REQUEST_BODY))))
+                        .flatMap(holiday->
+                                holidayUseCase.updateHoliday(id,HolidayMapper.buildHolidayModel(holiday))
+                        )
+                        .map(HolidayMapper::buildResponseData)
+                        .map(JsonApiDTO::new)
+                        .flatMap(ServerResponse.ok()::bodyValue)
+                        .onErrorResume(Mono::error)
+                );
+
+
     }
 }

@@ -1,6 +1,7 @@
 package work.javiermantilla.tax.domain.model.exception;
 
 import lombok.Getter;
+import work.javiermantilla.tax.domain.model.exception.message.BusinessExceptionMessage;
 
 import java.io.Serial;
 
@@ -12,5 +13,8 @@ public class BadRequestException extends RuntimeException {
 
     public BadRequestException(String message) {
         super(message);
+    }
+    public BadRequestException(BusinessExceptionMessage message) {
+        super(message.getMessage());
     }
 }

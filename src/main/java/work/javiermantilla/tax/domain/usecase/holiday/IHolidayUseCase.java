@@ -7,4 +7,5 @@ import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 public interface IHolidayUseCase {
     Flux<HolidayModel> getHolidays();
     Mono<HolidayModel> getHolidayById(Integer id);
+    Mono<HolidayModel> updateHoliday(Integer id,HolidayModel holidayModel);
  }

@@ -23,6 +23,8 @@ public class HolidayRouter {
                         .GET("/holiday", holidayHandler::getHoliday)
                         .GET("/holiday/{id}", holidayHandler::getHolidayId)
                         .POST("/holiday-external", holidayHandler::getHolidayExternal)
+                        .PUT("/holiday/{id}", holidayHandler::updateHoliday)
+
         ).build();
     }
 }

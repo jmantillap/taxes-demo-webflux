@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 import work.javiermantilla.tax.infrastructure.in.web.commons.JsonApiDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayResponseDTO;
+import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayUpdateRequestDTO;
 
 import java.util.List;
 
@@ -30,6 +31,14 @@ public class HolidayMapper {
                 holiday.getEnabled().intValue()==1 ? "A":"I"
         );
     }
+
+    public static HolidayModel buildHolidayModel(HolidayUpdateRequestDTO holidayUpdate) {
+        return  HolidayModel.builder()
+                .enabled(holidayUpdate.getState())
+                .id(holidayUpdate.getId())
+                .build();
+    }
+
 
     public static <T> JsonApiDTO<T> buildResponseData(T object){
         return new JsonApiDTO<>(object);
