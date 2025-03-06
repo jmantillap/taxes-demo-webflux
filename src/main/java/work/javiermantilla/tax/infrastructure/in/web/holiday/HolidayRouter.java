@@ -21,7 +21,7 @@ public class HolidayRouter {
                 accept(APPLICATION_JSON),
                 builder -> builder
                         .GET("/holiday", holidayHandler::getHoliday)
-                        .GET("/holiday/{id}", holidayHandler::getHoliday)
+                        .GET("/holiday/{id}", holidayHandler::getHolidayId)
                         .POST("/holiday-external", holidayHandler::getHolidayExternal)
         ).build();
     }

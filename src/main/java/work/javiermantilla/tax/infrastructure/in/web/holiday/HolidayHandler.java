@@ -11,6 +11,7 @@ import work.javiermantilla.tax.domain.usecase.holiday.IHolidayExternUseCase;
 import work.javiermantilla.tax.domain.usecase.holiday.IHolidayUseCase;
 import work.javiermantilla.tax.infrastructure.in.web.commons.JsonApiDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayRequestDTO;
+import work.javiermantilla.tax.infrastructure.in.web.holiday.dto.HolidayResponseDTO;
 import work.javiermantilla.tax.infrastructure.in.web.holiday.mapper.HolidayMapper;
 import work.javiermantilla.tax.infrastructure.in.web.util.RequestValidator;
 
@@ -46,6 +47,17 @@ public class HolidayHandler {
                         .thenReturn(holidayRequest))
                 .flatMap(holiday-> holidayExternUseCase.getHolidays(holiday.getYear()))
                 .map(HolidayMapper::buildResponseData)
+                .flatMap(ServerResponse.ok()::bodyValue)
+                .onErrorResume(Mono::error);
+    }
+
+    public Mono<ServerResponse> getHolidayId(ServerRequest serverRequest) {
+        return Mono.just(serverRequest)
+                .map(rq-> serverRequest.pathVariable("id"))
+                .map(Integer::parseInt)
+                .flatMap(holidayUseCase::getHolidayById)
+                .map(HolidayMapper::buildResponseData)
+                .map(JsonApiDTO::new)
                 .flatMap(ServerResponse.ok()::bodyValue)
                 .onErrorResume(Mono::error);
     }
