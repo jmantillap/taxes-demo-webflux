@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class RestClientFilterFunctionLog implements ExchangeFilterFunction {
 
     private final String componentName;
-    private static final java.util.logging.Logger logger = Logger.getLogger(RestClientFilterFunctionLog.class.getName());
+    private static final Logger logger = Logger.getLogger(RestClientFilterFunctionLog.class.getName());
 
 
     @Override

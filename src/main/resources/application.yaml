@@ -63,3 +63,6 @@ rest-consumer:
     connectTimeout: ${API_CALENDAR_CONNECT_TIMEOUT:3000}
     responseTimeout: ${API_CALENDAR_RESPONSE_TIMEOUT:3000}
     apiKey: ${API_CALENDAR_KEY:xxxxx}
+
+error-status-mapper:
+  default-status: 500
