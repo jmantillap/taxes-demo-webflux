@@ -1,8 +1,9 @@
-package work.javiermantilla.tax.domain.usecase.holiday;
+package work.javiermantilla.tax.domain.usecase.holiday.impl;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.holiday.HolidayExternModel;
+import work.javiermantilla.tax.domain.usecase.holiday.IHolidayExternUseCase;
 import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayExternRestPort;
 
 import java.util.List;
