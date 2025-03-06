@@ -1,4 +1,4 @@
-package work.javiermantilla.tax.infrastructure.in.web.util;
+package work.javiermantilla.tax.domain.model.exception;
 
 import lombok.Getter;
 

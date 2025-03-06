@@ -78,6 +78,7 @@ public class MicroserviceErrorHandler {
         var webClientException = (WebClientResponseException) throwable;
         var httpStatus = String.valueOf(webClientException.getStatusCode().value());
         log.info("Error response message: {}", webClientException.getResponseBodyAsString());
+        log.info("Error status: {}",httpStatus);
         try {
             var jsonErrorDTO = objectMapper.readValue(webClientException.getResponseBodyAsString(),
                     new TypeReference<JsonErrorDTO<ErrorDTO>>() {});

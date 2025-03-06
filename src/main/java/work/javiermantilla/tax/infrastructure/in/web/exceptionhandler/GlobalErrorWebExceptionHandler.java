@@ -25,7 +25,7 @@ import work.javiermantilla.tax.domain.model.exception.message.BusinessExceptionM
 import work.javiermantilla.tax.domain.model.exception.message.ErrorList;
 import work.javiermantilla.tax.domain.model.exception.message.ExceptionMessage;
 import work.javiermantilla.tax.domain.model.exception.message.TechnicalExceptionMessage;
-import work.javiermantilla.tax.infrastructure.in.web.util.BadRequestException;
+import work.javiermantilla.tax.domain.model.exception.BadRequestException;
 import work.javiermantilla.tax.infrastructure.in.web.util.ExceptionUtil;
 import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.exception.RestConsumerException;
 import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.helpers.LogConstantHelper;

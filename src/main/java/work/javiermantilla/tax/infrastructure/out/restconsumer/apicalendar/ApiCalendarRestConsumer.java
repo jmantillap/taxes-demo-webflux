@@ -47,12 +47,11 @@ public class ApiCalendarRestConsumer implements IHolidayExternRestPort {
                 .build();
 
         this.generateErrorMap = Map.of(
-                /*"DRT0002", new CustomerDistributionDataException(),
-                "DRT0012", new ConfigurationNotFoundException(),
-                "DRT0014", new DataNotFoundWasException(),
+                /*"300", new Error1Exception(),
+                "301", new Error2Exception(),
+                "302", new DataNotFoundWasException(),
                 "395", new TransactionTimeExpirationException(),
-                "009", new ErrorDataTransactionWasException(),
-                "394", new DataCompanyWasException()*/
+                "394", new DataCompanyException()*/
         );
     }
 

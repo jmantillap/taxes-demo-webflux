@@ -4,6 +4,7 @@ import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import reactor.core.publisher.Mono;
+import work.javiermantilla.tax.domain.model.exception.BadRequestException;
 import work.javiermantilla.tax.domain.model.exception.BusinessException;
 import work.javiermantilla.tax.domain.model.exception.TechnicalException;
 import work.javiermantilla.tax.domain.model.exception.message.ErrorList;

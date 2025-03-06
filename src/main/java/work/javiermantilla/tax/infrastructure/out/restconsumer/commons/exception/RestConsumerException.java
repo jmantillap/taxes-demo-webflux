@@ -11,7 +11,7 @@ public class RestConsumerException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -2248294343700910526L;
     private final RestConsumerExceptionMessage restConsumerExceptionMessage;
-    public static final String DEFAULT_ERROR_CODE = "MET9999";
+    public static final String DEFAULT_ERROR_CODE = "RST9999";
     public static final String DEFAULT_ERROR_MESSAGE = "Rest Consumer Unexpected Error";
     public static final String DEFAULT_ERROR_HTTP_STATUS = "500";
 

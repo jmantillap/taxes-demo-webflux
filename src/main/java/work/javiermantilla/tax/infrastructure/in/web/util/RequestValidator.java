@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import reactor.core.publisher.Mono;
+import work.javiermantilla.tax.domain.model.exception.BadRequestException;
 import work.javiermantilla.tax.domain.model.exception.TechnicalException;
 import work.javiermantilla.tax.domain.model.exception.message.TechnicalExceptionMessage;
 
