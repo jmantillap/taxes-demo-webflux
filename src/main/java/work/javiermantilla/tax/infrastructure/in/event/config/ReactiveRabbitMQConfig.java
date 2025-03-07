@@ -10,7 +10,6 @@ import reactor.rabbitmq.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import work.javiermantilla.tax.infrastructure.out.mq.config.RabbitMQConnectionFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
