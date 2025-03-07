@@ -8,6 +8,8 @@ import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 import work.javiermantilla.tax.domain.usecase.holiday.IHolidayUseCase;
 import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayRepositoryPort;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 public class HolidayUseCase implements IHolidayUseCase {
 
@@ -27,6 +29,9 @@ public class HolidayUseCase implements IHolidayUseCase {
 
     @Override
     public Mono<HolidayModel> updateHoliday(Integer id, HolidayModel holidayModel) {
-        return Mono.just(HolidayModel.builder().enabled(holidayModel.getEnabled()).build());
+        return getHolidayById(id)
+                .map(h-> h.toBuilder().enabled(holidayModel.getEnabled()).build()
+                ).flatMap(holidayRepositoryPort::updateHoliday)
+                .onErrorResume(Mono::error);
     }
 }
