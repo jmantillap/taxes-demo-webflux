@@ -68,7 +68,7 @@ public class HolidayHandler {
                 .onErrorResume(Mono::error);
     }
 
-    public Mono<ServerResponse> updateHoliday(ServerRequest serverRequest) {
+    public Mono<ServerResponse> updateHolidayState(ServerRequest serverRequest) {
         return Mono.just(serverRequest)
                 .map(rq-> serverRequest.pathVariable("id"))
                 .map(Integer::parseInt)
