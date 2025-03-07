@@ -45,6 +45,8 @@ dependencies {
 
 	//para enviar a una cola particular
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	//pra recibir mensajes de una cola particular
+	implementation 'io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.5'
 }
 
 tasks.named('test') {

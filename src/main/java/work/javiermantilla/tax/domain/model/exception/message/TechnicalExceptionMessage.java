@@ -26,6 +26,8 @@ public enum TechnicalExceptionMessage implements ExceptionMessage {
             "Invalid request. All required headers must be sent."),
     INVALID_HEADERS_EXCEPTION("TEC0012", "Invalid Header exception", "Invalid Header exception"),
     REACTIVE_EVENTS_GATEWAY("TEC0013", "Error emitting event", "Exception emitting domain event"),
+    TECHNICAL_JSON_DESERIALIZE_EXCEPTION("TEC0014", "Error deserializing message", "Error deserializing message"),
+
     ;
     private final String code;
     private final String description;
