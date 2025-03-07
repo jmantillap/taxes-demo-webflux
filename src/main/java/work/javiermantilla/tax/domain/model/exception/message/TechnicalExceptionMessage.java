@@ -25,6 +25,7 @@ public enum TechnicalExceptionMessage implements ExceptionMessage {
     MISSING_REQUIRED_HEADERS("TEC0011", "Some required header is missing.",
             "Invalid request. All required headers must be sent."),
     INVALID_HEADERS_EXCEPTION("TEC0012", "Invalid Header exception", "Invalid Header exception"),
+    REACTIVE_EVENTS_GATEWAY("TEC0013", "Error emitting event", "Exception emitting domain event"),
     ;
     private final String code;
     private final String description;

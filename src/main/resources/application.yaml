@@ -66,3 +66,12 @@ rest-consumer:
 
 error-status-mapper:
   default-status: 500
+
+rabbitmq:
+  password: ${RABBITMQ_PASSWORD:guest}
+  username: ${RABBITMQ_USERNAME:guest}
+  host: ${RABBITMQ_HOST:localhost}
+  port: ${RABBITMQ_PORT:5672}
+  virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
+  queue-name: ${RABBITMQ_QUEUE_NAME:tax_demo_test}
+

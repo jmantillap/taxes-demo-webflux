@@ -5,10 +5,15 @@ import work.javiermantilla.tax.domain.model.exception.message.TechnicalException
 
 @Getter
 public class TechnicalException extends RuntimeException {
-    private final work.javiermantilla.tax.domain.model.exception.message.TechnicalExceptionMessage technicalExceptionMessage;
+    private final TechnicalExceptionMessage technicalExceptionMessage;
 
-    public TechnicalException(Throwable cause, work.javiermantilla.tax.domain.model.exception.message.TechnicalExceptionMessage technicalExceptionMessage) {
-        super(technicalExceptionMessage.getDescription(), cause);   
+    public TechnicalException(Throwable throwable, TechnicalExceptionMessage technicalExceptionMessage) {
+        super(technicalExceptionMessage.getMessage(), throwable);
+        this.technicalExceptionMessage = technicalExceptionMessage;
+    }
+
+    public TechnicalException(String message, TechnicalExceptionMessage technicalExceptionMessage) {
+        super(message);
         this.technicalExceptionMessage = technicalExceptionMessage;
     }
 
