@@ -4,6 +4,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.TrustEverythingTrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Value;
 import reactor.core.scheduler.Schedulers;
 import reactor.rabbitmq.*;
@@ -21,6 +22,12 @@ public class ReactiveRabbitMQConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReactiveRabbitMQConfig.class.getName());
     private static final String FAIL_MSG = "Error creating ConnectionFactoryProvider ";
     public static final String TLS_VERSION = "TLSv1.3";
+
+
+    @Bean
+    public Queue queueReceive(@Value("${rabbitmq.queue-name}") final String queueName) {
+        return new Queue(queueName, true);
+    }
 
     @Bean
     public Receiver receiver(@Value("${rabbitmq.password}") final String pass,
@@ -51,4 +58,6 @@ public class ReactiveRabbitMQConfig {
             LOGGER.error(FAIL_MSG, e);
         }
     }
+
+
 }
