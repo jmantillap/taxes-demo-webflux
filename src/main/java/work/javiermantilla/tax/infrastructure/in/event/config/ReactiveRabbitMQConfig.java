@@ -1,7 +1,6 @@
 package work.javiermantilla.tax.infrastructure.in.event.config;
 
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.TrustEverythingTrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
@@ -9,17 +8,18 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
+
 import reactor.core.scheduler.Schedulers;
 import reactor.rabbitmq.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+//import javax.net.ssl.SSLContext;
+//import javax.net.ssl.TrustManager;
+//import java.security.KeyManagementException;
+//import java.security.NoSuchAlgorithmException;
+//import com.rabbitmq.client.TrustEverythingTrustManager;
 
 @Configuration
 public class ReactiveRabbitMQConfig {
@@ -66,9 +66,9 @@ public class ReactiveRabbitMQConfig {
     @Bean
     public ApplicationRunner rabbitQueueInitializer(RabbitAdmin rabbitAdmin) {
         return args -> {
-            System.out.println("📌 Creando colas de RabbitMQ antes de iniciar la aplicación...");
+            LOGGER.info("📌 Creando colas de RabbitMQ antes de iniciar la aplicación...");
             rabbitAdmin.initialize(); // Asegura que las colas y bindings se creen antes de que otros beans se ejecuten
-            System.out.println("✅ Colas de RabbitMQ creadas.");
+            LOGGER.info("✅ Colas de RabbitMQ creadas.");
         };
     }
 
@@ -79,7 +79,7 @@ public class ReactiveRabbitMQConfig {
 
     @Bean
     public SmartInitializingSingleton initQueueStartup() {
-        return () -> System.out.println("Todas las colas han sido creadas antes de que se inicie cualquier otro bean.");
+        return () -> LOGGER.info("Todas las colas han sido creadas antes de que se inicie cualquier otro bean.");
     }
 
 }
