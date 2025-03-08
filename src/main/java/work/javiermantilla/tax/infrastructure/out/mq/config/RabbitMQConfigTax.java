@@ -7,11 +7,13 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 @Configuration
 public class RabbitMQConfigTax {
 
     @Bean
+    @Order(2)
     public Queue queue(@Value("${rabbitmq.queue-name}") final String queueName) {
         return new Queue(queueName, true);
     }

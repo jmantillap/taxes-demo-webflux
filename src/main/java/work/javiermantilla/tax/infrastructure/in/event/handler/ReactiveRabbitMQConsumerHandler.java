@@ -4,9 +4,8 @@ package work.javiermantilla.tax.infrastructure.in.event.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.reactivecommons.api.domain.DomainEvent;
-import org.springframework.amqp.core.Queue;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import reactor.rabbitmq.Receiver;
 import work.javiermantilla.tax.domain.model.exception.TechnicalException;
@@ -26,11 +25,6 @@ public class ReactiveRabbitMQConsumerHandler {
         this.receiver = receiver;
         this.objectMapper = objectMapper;
         this.queueName = queueName;
-    }
-
-    @Bean
-    public Queue queueReceive(@Value("${rabbitmq.queue-name}") final String queueName) {
-        return new Queue(queueName, true);
     }
 
     @PostConstruct
