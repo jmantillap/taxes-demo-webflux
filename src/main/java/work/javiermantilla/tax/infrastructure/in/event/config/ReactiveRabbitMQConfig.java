@@ -4,7 +4,10 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.TrustEverythingTrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import reactor.core.scheduler.Schedulers;
 import reactor.rabbitmq.*;
@@ -51,13 +54,33 @@ public class ReactiveRabbitMQConfig {
 
         return RabbitFlux.createReceiver(receiverOptions);
     }
-    private void configureSsl(ConnectionFactory factory) {
-        try {
-            var sslContext = SSLContext.getInstance(TLS_VERSION);
-            sslContext.init(null, new TrustManager[] {new TrustEverythingTrustManager()}, null);
-            factory.useSslProtocol(sslContext);
-        } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            LOGGER.error(FAIL_MSG, e);
-        }
+//    private void configureSsl(ConnectionFactory factory) {
+//        try {
+//            var sslContext = SSLContext.getInstance(TLS_VERSION);
+//            sslContext.init(null, new TrustManager[] {new TrustEverythingTrustManager()}, null);
+//            factory.useSslProtocol(sslContext);
+//        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+//            LOGGER.error(FAIL_MSG, e);
+//        }
+//    }
+
+    @Bean
+    public ApplicationRunner rabbitQueueInitializer(RabbitAdmin rabbitAdmin) {
+        return args -> {
+            LOGGER.info("📌 Creando colas de RabbitMQ antes de iniciar la aplicación...");
+            rabbitAdmin.initialize(); // Asegura que las colas y bindings se creen antes de que otros beans se ejecuten
+            LOGGER.info("✅ Colas de RabbitMQ creadas.");
+        };
     }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(org.springframework.amqp.rabbit.connection.ConnectionFactory connectionFactory) {
+        return new RabbitAdmin(connectionFactory);
+    }
+
+    @Bean
+    public SmartInitializingSingleton initQueueStartup() {
+        return () -> LOGGER.info("Todas las colas han sido creadas antes de que se inicie cualquier otro bean.");
+    }
+
 }

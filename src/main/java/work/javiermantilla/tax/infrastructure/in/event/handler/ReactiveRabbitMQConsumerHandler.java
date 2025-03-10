@@ -3,6 +3,7 @@ package work.javiermantilla.tax.infrastructure.in.event.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.reactivecommons.api.domain.DomainEvent;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import reactor.rabbitmq.Receiver;
@@ -38,6 +39,8 @@ public class ReactiveRabbitMQConsumerHandler {
     @PostConstruct
     public void listenMessages() {
         receiver.consumeAutoAck(queueName)
+                .doOnError(e -> System.err.println("Error al consumir mensajes " +
+                        "o Cola no existe: " + e.getMessage()))
                 .map(delivery -> convertMessage(delivery.getBody()))
                 /*.flatMap(event-> {)
                     System.out.println("📥 Evento recibido: " + event);
