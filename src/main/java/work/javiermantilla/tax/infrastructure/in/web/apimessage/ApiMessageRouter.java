@@ -21,6 +21,8 @@ public class ApiMessageRouter {
                 builder -> builder
                         .POST("/send-message-event", apiMessageHandler::sendMessageEvent)
                         .POST("/send-message-queue", apiMessageHandler::sendMessageQueue)
+                        .POST("/send-message-event-other", apiMessageHandler::sendMessageEventOther)
+
 
         ).build();
     }

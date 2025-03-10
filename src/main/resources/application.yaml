@@ -75,3 +75,7 @@ rabbitmq:
   virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
   queue-name: ${RABBITMQ_QUEUE_NAME:tax_demo_test}
 
+events-entry-points:
+  events:
+    TAX_EVENT_MESSAGE: tax.demo.routing.key.event.message
+    TAX_EVENT_OTHER: tax.demo.routing.key.event.other

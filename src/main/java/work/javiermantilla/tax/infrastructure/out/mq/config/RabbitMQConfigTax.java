@@ -7,13 +7,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 @Configuration
 public class RabbitMQConfigTax {
 
     @Bean
-    @Order(1)
+    @Order(Ordered.HIGHEST_PRECEDENCE)
     public Queue queue(@Value("${rabbitmq.queue-name}") final String queueName) {
         return new Queue(queueName, true);
     }

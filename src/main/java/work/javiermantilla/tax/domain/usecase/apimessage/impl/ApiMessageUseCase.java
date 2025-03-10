@@ -14,6 +14,7 @@ public class ApiMessageUseCase implements IApiMessageUseCase {
     private final IQueuePublisherPort queuePublisherPort;
     private static final String TYPE_EVENT= "SEND_MESSAGE_EVENT_TEST";
     private static final String TYPE_EVENT_QUEUE= "SEND_MESSAGE_QUEUE_TEST";
+    private static final String TYPE_EVENT_OTHER= "SEND_MESSAGE_EVENT_OTHER";
 
     @Override
     public Mono<String> sendMessageEvent(String message) {
@@ -26,6 +27,13 @@ public class ApiMessageUseCase implements IApiMessageUseCase {
     public Mono<String> sendMessageQueue(String message) {
         return this.queuePublisherPort.emit(
                 EventUtil.generateEvent(TYPE_EVENT_QUEUE,message))
+                .thenReturn(message);
+    }
+
+    @Override
+    public Mono<String> sendMessageEventOther(String message) {
+        return this.eventPublisherPort
+                .emitOtherRouterKey(EventUtil.generateEvent(TYPE_EVENT_OTHER,message))
                 .thenReturn(message);
     }
 }

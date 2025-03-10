@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 public interface IApiMessageUseCase {
     Mono<String> sendMessageEvent(String message);
     Mono<String> sendMessageQueue(String message);
+    Mono<String> sendMessageEventOther(String message);
 }

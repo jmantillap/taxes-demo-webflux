@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 import org.reactivecommons.api.domain.DomainEvent;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import reactor.rabbitmq.Receiver;
 import work.javiermantilla.tax.domain.model.exception.TechnicalException;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  * Otra forma de consumir
  */
 @Component
+@DependsOn("queue")
 public class ReactiveRabbitMQConsumerHandler {
 
     private final Receiver receiver;
@@ -38,6 +40,8 @@ public class ReactiveRabbitMQConsumerHandler {
      */
     @PostConstruct
     public void listenMessages() {
+        logger.log(Level.INFO,"✅ Se activa listener para recibir los mensajes de de la cola {0}"
+        , new Object[]{queueName});
         receiver.consumeAutoAck(queueName)
                 .doOnError(e -> System.err.println("Error al consumir mensajes " +
                         "o Cola no existe: " + e.getMessage()))
