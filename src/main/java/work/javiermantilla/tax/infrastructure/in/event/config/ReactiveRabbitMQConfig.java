@@ -5,6 +5,7 @@ import com.rabbitmq.client.TrustEverythingTrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.annotation.Order;
 import reactor.core.scheduler.Schedulers;
 import reactor.rabbitmq.*;
 
@@ -22,7 +23,15 @@ public class ReactiveRabbitMQConfig {
     private static final String FAIL_MSG = "Error creating ConnectionFactoryProvider ";
     public static final String TLS_VERSION = "TLSv1.3";
 
+
     @Bean
+    public String rabbitQueueName(@Value("${rabbitmq.queue-name}") final String queueName) {
+        return queueName;
+    }
+
+
+    @Bean
+    @Order(3)
     public Receiver receiver(@Value("${rabbitmq.password}") final String pass,
                              @Value("${rabbitmq.port}") final Integer port,
                              @Value("${rabbitmq.username}") final String username,

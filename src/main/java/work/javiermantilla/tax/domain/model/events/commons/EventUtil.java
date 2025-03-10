@@ -2,7 +2,7 @@ package work.javiermantilla.tax.domain.model.events.commons;
 
 
 import lombok.experimental.UtilityClass;
-import work.javiermantilla.tax.domain.model.events.Event;
+import work.javiermantilla.tax.domain.model.events.EventModel;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -23,8 +23,8 @@ public class EventUtil {
         return ZonedDateTime.now(ZoneId.of(AMERICA_ZONE_ID)).format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 
-    public <T> Event<T> generateEvent(String type, T eventData) {
-        return Event.<T>builder()
+    public <T> EventModel<T> generateEvent(String type, T eventData) {
+        return EventModel.<T>builder()
                 .id(UUID.randomUUID().toString())
                 .invoker(INVOKER)
                 .type(type)
@@ -36,8 +36,8 @@ public class EventUtil {
                 .build();
     }
 
-    public <T> Event<T> generateEvent(String type, T eventData, String eventId) {
-        return Event.<T>builder()
+    public <T> EventModel<T> generateEvent(String type, T eventData, String eventId) {
+        return EventModel.<T>builder()
                 .id(eventId)
                 .invoker(INVOKER)
                 .type(type)

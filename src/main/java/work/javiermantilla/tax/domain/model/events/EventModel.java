@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Event<T> implements Serializable {
+public class EventModel<T> implements Serializable {
 
     protected String type;
     protected String specVersion;
