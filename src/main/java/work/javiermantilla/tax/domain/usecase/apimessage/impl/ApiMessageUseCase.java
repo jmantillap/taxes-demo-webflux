@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.events.commons.EventUtil;
 import work.javiermantilla.tax.domain.usecase.apimessage.IApiMessageUseCase;
-import work.javiermantilla.tax.domain.usecase.events.port.IEventPublisherPort;
-import work.javiermantilla.tax.domain.usecase.events.port.IQueuePublisherPort;
+import work.javiermantilla.tax.domain.model.events.port.IEventPublisherPort;
+import work.javiermantilla.tax.domain.model.events.port.IQueuePublisherPort;
 
 @RequiredArgsConstructor
 public class ApiMessageUseCase implements IApiMessageUseCase {

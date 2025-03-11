@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.events.EventModel;
 import work.javiermantilla.tax.domain.model.exception.TechnicalException;
 import work.javiermantilla.tax.domain.model.exception.message.TechnicalExceptionMessage;
-import work.javiermantilla.tax.domain.usecase.events.port.IEventPublisherPort;
+import work.javiermantilla.tax.domain.model.events.port.IEventPublisherPort;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

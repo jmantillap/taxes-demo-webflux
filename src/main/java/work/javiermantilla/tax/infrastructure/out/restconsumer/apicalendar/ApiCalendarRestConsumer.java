@@ -16,9 +16,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import work.javiermantilla.tax.domain.model.holiday.HolidayExternModel;
-import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayExternRestPort;
+import work.javiermantilla.tax.domain.model.holiday.port.IHolidayExternRestPort;
 import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.exception.MicroserviceErrorHandler;
-import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.filters.CustomFiltersRest;
 import work.javiermantilla.tax.infrastructure.out.restconsumer.commons.filters.RestClientFilterFunctionLog;
 
 import java.time.Duration;

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
-import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayRepositoryPort;
+import work.javiermantilla.tax.domain.model.holiday.port.IHolidayRepositoryPort;
 import work.javiermantilla.tax.infrastructure.out.r2dbc.holiday.entity.HolidayEntity;
 import work.javiermantilla.tax.infrastructure.out.r2dbc.holiday.repository.HolidayRepository;
 

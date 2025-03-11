@@ -1,4 +1,4 @@
-package work.javiermantilla.tax.domain.usecase.holiday.port;
+package work.javiermantilla.tax.domain.model.holiday.port;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

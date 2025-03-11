@@ -1,0 +1,1 @@
+package work.javiermantilla.tax.domain.model.configurationtax;

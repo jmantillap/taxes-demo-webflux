@@ -6,9 +6,7 @@ import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.exception.DataNotFoundException;
 import work.javiermantilla.tax.domain.model.holiday.HolidayModel;
 import work.javiermantilla.tax.domain.usecase.holiday.IHolidayUseCase;
-import work.javiermantilla.tax.domain.usecase.holiday.port.IHolidayRepositoryPort;
-
-import java.time.LocalDateTime;
+import work.javiermantilla.tax.domain.model.holiday.port.IHolidayRepositoryPort;
 
 @RequiredArgsConstructor
 public class HolidayUseCase implements IHolidayUseCase {

@@ -1,13 +1,12 @@
 package work.javiermantilla.tax.infrastructure.out.mq.events;
 
-import lombok.RequiredArgsConstructor;
 import org.reactivecommons.api.domain.DomainEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.events.EventModel;
-import work.javiermantilla.tax.domain.usecase.events.port.IQueuePublisherPort;
+import work.javiermantilla.tax.domain.model.events.port.IQueuePublisherPort;
 
 
 @Component
