@@ -37,6 +37,8 @@ logging:
   level:
     root: ${ROOT_LEVEL_LOG:info}
     web: ${LOG4J_LEVEL:info}
+    org.springframework.data.mongodb: DEBUG
+    #org.springframework.web: DEBUG
 r2dbc:
   mysql:
       #url: ${MYSQL_URL:r2dbc:mysql://localhost:3306/taxes_Demo}
@@ -50,6 +52,16 @@ r2dbc:
         max-size: 20      # Número máximo de conexiones en el pool
         max-idle-time: 30m # Tiempo máximo de inactividad de una conexión
         validation-query: "SELECT 1" # Consulta para validar conexiones
+
+no-sql:
+  mongo:
+    database: ${MONGO_DATABASE:taxes_Demo}
+    host: ${MONGO_HOST:localhost}
+    port: ${MONGO_PORT:27017}
+    username: ${MONGO_USER:admin}
+    password: ${MONGO_PASSWORD:123456}
+    authentication-database: ${MONGO_AUTHENTICATION_DATABASE:admin}
+    auto-index-creation: true
 
 rest-consumer:
   timeout:

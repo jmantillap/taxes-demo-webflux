@@ -2,29 +2,34 @@ package work.javiermantilla.tax.domain.model.events;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class DomainEventModel {
-    private String id;
-    private String type;
-    private String payload;
+@NoArgsConstructor
+@Builder(toBuilder = true)
+public class DomainEventModel<T> {
+    private String name;
+    private String eventId;
+    private T data;
 
     @JsonCreator
-    public DomainEventModel(@JsonProperty("id") String id,
-                            @JsonProperty("type") String type,
-                            @JsonProperty("payload") String payload) {
-        this.id = id;
-        this.type = type;
-        this.payload = payload;
+    public DomainEventModel(@JsonProperty("name") String name,
+                            @JsonProperty("eventId") String eventId,
+                            @JsonProperty("data") T data) {
+        this.name = name;
+        this.eventId = eventId;
+        this.data = data;
     }
-
-    public String getId() { return id; }
-    public String getType() { return type; }
-    public String getPayload() { return payload; }
 
     @Override
     public String toString() {
-        return "DomainEvent{id='" + id + "', type='" + type + "', payload='" + payload + "'}";
+        return "DomainEventModel{" +
+                "name='" + name + '\'' +
+                ", eventId='" + eventId + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

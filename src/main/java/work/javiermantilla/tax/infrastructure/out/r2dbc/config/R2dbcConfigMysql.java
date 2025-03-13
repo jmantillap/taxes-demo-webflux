@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.r2dbc.ConnectionFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.r2dbc.connection.R2dbcTransactionManager;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.transaction.ReactiveTransactionManager;
@@ -21,6 +22,7 @@ import java.time.Duration;
 
 @Configuration
 @EnableTransactionManagement
+@EnableR2dbcRepositories(basePackages = "work.javiermantilla.tax.infrastructure.out.r2dbc")
 public class R2dbcConfigMysql {
 
 

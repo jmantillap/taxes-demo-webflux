@@ -27,10 +27,9 @@ public class EventsHandler {
     }
 
     public Mono<Void> handlerTaxMessage(DomainEvent<DomainEvent> domainEventDomainEvent) {
-        logger.log(Level.INFO,"📮 Tienes un nuevo mensaje: {0}, del evento: {1} y routekey: {2}"
-                , new Object[]{domainEventDomainEvent
-                        , EventsName.TAX_EVENT_OTHER
-                        ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER) });
+        logger.log(Level.INFO,"📮 Tienes un nuevo mensaje del evento: {0} y routekey: {1}, mensaje: {2}"
+                , new Object[]{EventsName.TAX_EVENT_OTHER
+                        ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER),domainEventDomainEvent });
 
         return Mono.empty();
     }

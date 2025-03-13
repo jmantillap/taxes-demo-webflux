@@ -51,7 +51,7 @@ public class ReactiveRabbitMQConsumerHandler {
                     return event;
                 })*/
                 .doOnNext(event ->
-                        logger.log(Level.INFO, "📥 Event receive: {0}", new Object[]{event})
+                        logger.log(Level.INFO, "📥 Event receive listener: {0}", new Object[]{event})
                 ).subscribe();
     }
 
