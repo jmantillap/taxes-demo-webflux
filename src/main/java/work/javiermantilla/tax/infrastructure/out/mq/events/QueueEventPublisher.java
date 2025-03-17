@@ -16,7 +16,8 @@ public class QueueEventPublisher implements IQueuePublisherPort {
     private final String queueName;
     private static final String DIRECT_QUEUE_NAME = "direct";
 
-    public QueueEventPublisher(RabbitTemplate rabbitTemplate, @Value("${rabbitmq.queue-name}") String queueName) {
+    public QueueEventPublisher(RabbitTemplate rabbitTemplate,
+                               @Value("${rabbitmq.queue-name}") String queueName) {
         this.rabbitTemplate = rabbitTemplate;
         this.queueName = queueName;
     }

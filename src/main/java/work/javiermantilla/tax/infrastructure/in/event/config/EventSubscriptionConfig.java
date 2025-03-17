@@ -5,6 +5,7 @@ import org.reactivecommons.api.domain.DomainEvent;
 import org.reactivecommons.async.api.HandlerRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import work.javiermantilla.tax.domain.model.events.DomainEventModel;
 import work.javiermantilla.tax.domain.model.events.EventsName;
 import work.javiermantilla.tax.infrastructure.in.event.handler.EventsHandler;
 
@@ -26,9 +27,9 @@ public class EventSubscriptionConfig {
         final var events = eventsProperties.getEvents();
 
         return register().listenEvent(events.get(EventsName.TAX_EVENT_OTHER),
-                        eventsHandler::handlerTaxOtherEvent, DomainEvent.class)
+                        eventsHandler::handlerTaxOtherEvent, DomainEventModel.class)
                 .listenEvent(events.get(EventsName.TAX_EVENT_MESSAGE),
-                        eventsHandler::handlerTaxMessage, DomainEvent.class)
+                        eventsHandler::handlerTaxMessage, DomainEventModel.class)
                 ;
     }
 }
