@@ -6,6 +6,9 @@ import org.reactivecommons.async.impl.config.annotations.EnableEventListeners;
 import reactor.core.publisher.Mono;
 import work.javiermantilla.tax.domain.model.events.DomainEventModel;
 import work.javiermantilla.tax.domain.model.events.EventsName;
+import work.javiermantilla.tax.domain.model.messagedata.MessageModel;
+import work.javiermantilla.tax.domain.model.messagedata.MessageStatus;
+import work.javiermantilla.tax.domain.usecase.processmessage.IProcessMessageUseCase;
 import work.javiermantilla.tax.infrastructure.in.event.config.EventsProperties;
 
 import java.util.logging.Level;
@@ -17,6 +20,7 @@ public class EventsHandler {
     private static final String LOG_CLASS_NAME = EventsHandler.class.getName();
     private static final Logger logger = Logger.getLogger(EventsHandler.class.getName());
     private final EventsProperties eventsProperties;
+    private final IProcessMessageUseCase processMessageUseCase;
 
     public Mono<Void> handlerTaxOtherEvent(DomainEvent<DomainEventModel> objectDomainEvent) {
         logger.log(Level.INFO,"📬 Tienes un nuevo mensaje del evento:{0} y routekey: {1}, mensaje: {2}"
@@ -24,7 +28,15 @@ public class EventsHandler {
                         ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER)
                 ,objectDomainEvent});
 
-        return Mono.empty();
+        var messageModel = MessageModel.builder()
+                .message((String)objectDomainEvent.getData().getData())
+                .event(objectDomainEvent.getData())
+                .status(MessageStatus.PROCESSED)
+                .id(objectDomainEvent.getData().getEventId())
+                .build();
+
+        return this.processMessageUseCase.processMessage(messageModel)
+                .then();
     }
 
     public Mono<Void> handlerTaxMessage(DomainEvent<DomainEventModel> domainEventDomainEvent) {
