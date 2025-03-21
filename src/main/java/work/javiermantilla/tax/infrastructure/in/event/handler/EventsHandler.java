@@ -28,11 +28,14 @@ public class EventsHandler {
                         ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER)
                 ,objectDomainEvent});
 
+        var data = objectDomainEvent.getData()
+                .toBuilder().name(objectDomainEvent.getName())
+                .eventId(objectDomainEvent.getEventId())
+                .build();
         var messageModel = MessageModel.builder()
                 .message((String)objectDomainEvent.getData().getData())
-                .event(objectDomainEvent.getData())
+                .event(data)
                 .status(MessageStatus.PROCESSED)
-                .id(objectDomainEvent.getData().getEventId())
                 .build();
 
         return this.processMessageUseCase.processMessage(messageModel)
