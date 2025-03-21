@@ -27,18 +27,9 @@ public class EventsHandler {
                 , new Object[]{ EventsName.TAX_EVENT_OTHER
                         ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER)
                 ,objectDomainEvent});
-
-        var data = objectDomainEvent.getData()
-                .toBuilder().name("handlerTaxOtherEvent :"+ objectDomainEvent.getName())
-                .eventId(objectDomainEvent.getEventId())
-                .build();
-        var messageModel = MessageModel.builder()
-                .message((String)objectDomainEvent.getData().getData())
-                .event(data)
-                .status(MessageStatus.PROCESSED)
-                .build();
-
-        return this.processMessageUseCase.processMessage(messageModel)
+        var messageModel = this.getMessageModel(objectDomainEvent, "handlerTaxOtherEvent");
+        return this.processMessageUseCase
+                .processMessage(messageModel)
                 .then();
     }
 
@@ -47,7 +38,21 @@ public class EventsHandler {
                 , new Object[]{EventsName.TAX_EVENT_OTHER
                         ,eventsProperties.getEvents().get(EventsName.TAX_EVENT_OTHER),
                         domainEventDomainEvent });
+        return this.processMessageUseCase.processMessage(
+                    this.getMessageModel(domainEventDomainEvent, "handlerTaxMessage")
+                ).then();
+    }
 
-        return Mono.empty();
+    private MessageModel getMessageModel(DomainEvent<DomainEventModel> eventDomainEvent,
+                                         String methodName) {
+        var data = eventDomainEvent.getData()
+                .toBuilder().name(methodName +" :"+ eventDomainEvent.getName())
+                .eventId(eventDomainEvent.getEventId())
+                .build();
+        return  MessageModel.builder()
+                .message((String)eventDomainEvent.getData().getData())
+                .event(data)
+                .status(MessageStatus.PROCESSED)
+                .build();
     }
 }
